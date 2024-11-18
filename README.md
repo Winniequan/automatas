@@ -48,7 +48,7 @@ The string 'aaa' is accepted by the PDA: False
 How It Works
 Step 1: The PDA processes the first segment 𝑎^𝑛 pushing as onto the stack.
 Step 2: It transitions to processing b and pops one a from the stack.
-Step 3: In the next segment 𝑎^2 it pushes two as for every a.
+Step 3: In the next segment 𝑎^2n it pushes two as for every a.
 Step 4: The PDA pops all as from the stack, ensuring 2𝑛 matches the stack size.
 Step 5: The PDA accepts if the stack is empty (only the marker 0 remains).
 
