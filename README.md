@@ -1,3 +1,79 @@
+# Deterministic Finite Automaton (DFA)
+*Deterministic Finite Automaton (DFA)** is a computational model used to recognize patterns within input strings. This implementation simulates a DFA that processes strings consisting of the characters `a`, `b`, and `c` and determines if they are accepted by reaching the accept state `S5`.
+
+The DFA consists of the following states:
+
+- `S0` (start state)
+- `S1`, `S2`, `S3`, `S4`
+- `S5` (accept state)
+- `TRAP` (reject state)
+
+### Transition Rules
+
+- Starting from `S0`, the DFA transitions between states based on the input character (`a`, `b`, `c`).
+- If the DFA enters the `TRAP` state, it immediately rejects the string.
+- The string is **accepted** if the DFA reaches `S5` after processing all input characters.
+
+## Features
+
+- Simulates the DFA's behavior with a transition function.
+- Determines if a given string is accepted by the DFA.
+- Provides detailed modular code, making it easy to extend and modify.
+
+## Code Structure
+
+- **`DFA` Class:** 
+  - Represents the DFA with states, a transition function, and an acceptance check.
+- **Methods:**
+  - `transition(input_char)`: Defines state transitions based on the input character.
+  - `is_accepted(input_string)`: Processes an input string and checks if it is accepted.
+
+## How to Use
+
+### Requirements
+
+- Python 3.6 or later
+
+### Running the Code
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+Run the script:
+
+bash
+Copy code
+python dfa.py
+Modify the input string in the main function or test additional cases using:
+
+python
+Copy code
+print(dfa.is_accepted("your_input_string"))
+Example Usage
+Here are some examples:
+
+Input String	Accepted?
+abac	 True
+abc	 False
+abacaaa	 True
+aabbcc	False
+(empty)	False
+Customization
+To modify the DFA:
+
+Update the transition method to reflect new states and transitions.
+Add new test cases as needed.
+
+### NFA
+
+
+
+
+
+
+
+
 # PDA
 Pushdown Automaton (PDA) Simulator
 This program simulates a Pushdown Automaton (PDA) that recognizes the language:
