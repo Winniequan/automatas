@@ -83,8 +83,6 @@ Update the transition method to define new states and transitions.
 Add or update test cases in the main section.
 
 
-
-### NFA
 # NFA Implementation for Regular Expression `aa*b(ca* + acaa*)`
 
 This repository contains a Python implementation of a Non-deterministic Finite Automaton (NFA) designed to process input strings and verify whether they conform to the regular expression:
