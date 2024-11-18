@@ -1,69 +1,88 @@
-# Deterministic Finite Automaton (DFA)
-*Deterministic Finite Automaton (DFA)** is a computational model used to recognize patterns within input strings. This implementation simulates a DFA that processes strings consisting of the characters `a`, `b`, and `c` and determines if they are accepted by reaching the accept state `S5`.
 
-The DFA consists of the following states:
+# DFA Implementation for Pattern Matching `aa*bacaa*`
 
-- `S0` (start state)
-- `S1`, `S2`, `S3`, `S4`
-- `S5` (accept state)
-- `TRAP` (reject state)
+This repository contains a Python implementation of a Deterministic Finite Automaton (DFA) that matches strings following the regular expression `aa*bacaa*`. 
+
+## Overview
+
+A **Deterministic Finite Automaton (DFA)** is a theoretical machine used to recognize patterns in input strings. This implementation simulates a DFA that matches strings conforming to the following pattern:
+
+### Pattern: `aa*bacaa*`
+
+- Starts with one `a`, followed by zero or more `a`s.
+- Followed by a single `b`.
+- Then a single `a`, followed by a `c`.
+- Ends with one `a`, followed by zero or more `a`s.
+
+### DFA State Diagram
+
+The DFA processes input strings and transitions between the following states:
+
+- **`S0`**: Start state, expects the first `a`.
+- **`S1`**: Matches the leading `a` and additional `a`s.
+- **`S2`**: Matches the `b` after the `a`s.
+- **`S3`**: Matches the `a` after the `b`.
+- **`S4`**: Matches the `c`.
+- **`S5`**: Accepts the final `a` and any subsequent `a`s (accept state).
+- **`TRAP`**: Reject state for invalid inputs.
 
 ### Transition Rules
 
-- Starting from `S0`, the DFA transitions between states based on the input character (`a`, `b`, `c`).
-- If the DFA enters the `TRAP` state, it immediately rejects the string.
-- The string is **accepted** if the DFA reaches `S5` after processing all input characters.
+- Any invalid input or sequence transitions the DFA to the `TRAP` state.
+- The string is **accepted** if the DFA ends in the `S5` state after processing all input characters.
 
 ## Features
 
-- Simulates the DFA's behavior with a transition function.
-- Determines if a given string is accepted by the DFA.
-- Provides detailed modular code, making it easy to extend and modify.
+- Simulates a DFA with six states (`S0` to `S5` and `TRAP`).
+- Processes strings character by character.
+- Determines whether a given string matches the pattern.
 
-## Code Structure
+## Usage
 
-- **`DFA` Class:** 
-  - Represents the DFA with states, a transition function, and an acceptance check.
-- **Methods:**
-  - `transition(input_char)`: Defines state transitions based on the input character.
-  - `is_accepted(input_string)`: Processes an input string and checks if it is accepted.
-
-## How to Use
-
-### Requirements
-
-- Python 3.6 or later
+Prerequisites
+anaconda.cloud/jupyterhub
+How to Use
+Open the pda.ipynb file on anaconda cloud
+Run the program using Python:
 
 ### Running the Code
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd <repository-folder>
-Run the script:
+Test the DFA with input strings: Modify the input string in the main section of the script to test specific cases.
+Example:
+print(dfa.is_accepted("aabacaa"))  # Expected output: True
+Example Input and Output
+Input String	Accepted?	Explanation
 
-bash
-Copy code
-python dfa.py
-Modify the input string in the main function or test additional cases using:
+aabacaa	 True Matches the pattern
+aaabacaaa	True Matches the pattern
+aabaca	False	Missing the final c and a part
+baca	False	Does not start with a
+aaacaa	False No	Missing b and c
+aabac	False No	Missing final a
+DFA Implementation
+The DFA is implemented as a Python class with the following methods:
 
-python
-Copy code
-print(dfa.is_accepted("your_input_string"))
-Example Usage
-Here are some examples:
+transition(input_char): Defines the transitions between states based on the current state and input character.
+is_accepted(input_string): Processes an input string and determines if it matches the pattern.
+Code Example
+Here is an example usage of the DFA class:
 
-Input String	Accepted?
-abac	 True
-abc	 False
-abacaaa	 True
-aabbcc	False
-(empty)	False
+dfa = DFA()
+print(dfa.is_accepted("aabacaa"))  # Output: True
+print(dfa.is_accepted("baca"))     # Output: False
+
+How It Works
+The DFA starts in the S0 state.
+Each input character triggers a transition based on the current state.
+If an invalid character or sequence is encountered, the DFA transitions to the TRAP state.
+The string is accepted only if the DFA ends in the S5 state.
 Customization
-To modify the DFA:
+To modify the DFA for a different pattern:
 
-Update the transition method to reflect new states and transitions.
-Add new test cases as needed.
+Update the transition method to define new states and transitions.
+Add or update test cases in the main section.
+
+
 
 ### NFA
 # NFA Implementation for Regular Expression `aa*b(ca* + acaa*)`
