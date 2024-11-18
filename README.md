@@ -186,8 +186,7 @@ abc
 aabc
 abab
 
-# PDA
-Pushdown Automaton (PDA) Simulator
+Pushdown Automaton (PDA) 𝐿={𝑎^𝑛𝑏𝑎^2𝑛 ∣ 𝑛≥1}
 This program simulates a Pushdown Automaton (PDA) that recognizes the language:
 𝐿={𝑎^𝑛𝑏𝑎^2𝑛 ∣ 𝑛≥1}
 The PDA accepts strings where:
