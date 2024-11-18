@@ -66,13 +66,106 @@ Update the transition method to reflect new states and transitions.
 Add new test cases as needed.
 
 ### NFA
+# NFA Implementation for Regular Expression `aa*b(ca* + acaa*)`
 
+This repository contains a Python implementation of a Non-deterministic Finite Automaton (NFA) designed to process input strings and verify whether they conform to the regular expression:
 
+aab(ca + acaa*)
 
+## Regular Expression Breakdown
 
+1. **`aa*`**: The string starts with at least two `a`s, followed by zero or more `a`s.
+2. **`b`**: A single `b` is required after the `aa*`.
+3. **`ca*`**: Followed by a `c` and zero or more `a`s.
+4. **`+`**: OR
+5. **`acaa*`**: An `a`, followed by `c`, then one or more `a`s.
 
+## Features
 
+- Implements an NFA to evaluate strings against the specified regular expression.
+- Allows non-deterministic transitions where a single input can lead to multiple possible states.
+- Includes functionality to check if a string is accepted by the NFA.
 
+### States
+
+1. **`S0`**: Start state.
+2. **`S1`**: Handles the `aa*` portion (at least two `a`s).
+3. **`S2`**: Accepts a single `b` after `aa*`.
+4. **`S3`**: Prepares for `c` in either `ca*` or `acaa*`.
+5. **`S4`**: Handles `c` and transitions to either `ca*` or `acaa*`.
+6. **`S5`**: Accepting state (final state).
+7. **`TRAP`**: Trap state for invalid inputs.
+
+### Transitions
+
+The NFA transitions allow multiple possible states:
+- `S0` → `S1` on `a`
+- `S1` → `S1` on `a`, `S2` on `b`
+- `S2` → `S3` on `a`
+- `S3` → `S4` on `c`
+- `S4` → `S5` on `a`
+- `S5` → `S5` on `a`
+- Any invalid transitions lead to the trap state `TRAP`.
+
+### Acceptance
+
+A string is accepted if, after processing all input, one or more of the current states is the accepting state (`S5`).
+
+## Usage
+
+Prerequisites
+anaconda.cloud/jupyterhub
+How to Use
+Open the pda.ipynb file on anaconda cloud
+Run the program using Python:
+Enter a string to check: aaaabca
+The program will output whether the string is ACCEPTED or REJECTED by the NFA.
+
+Example Input and Output
+Example 1:
+Input: aaaaabca
+Output:The string 'aaaaabca' is ACCEPTED by the NFA.
+Example 2:
+Input: abac
+Output: The string 'abac' is REJECTED by the NFA.
+
+NFA Class
+The NFA class includes:
+
+States: Set of all possible states, including the trap state.
+Transitions: A dictionary defining valid transitions, where each input may lead to multiple states.
+Start State: Initial state of the NFA (S0).
+Accepting State: Final state where the input is accepted (S5).
+Method: process_input
+Starts with the initial state (S0).
+Tracks all possible current states.
+For each input character, determines all possible next states.
+After processing all characters, checks if any current states are the accepting state (S5).
+Examples of Accepted Strings
+The following strings are valid for the regular expression aa*b(ca* + acaa*):
+
+aabca
+aaaabacaaa
+aaabca
+aaaaaaabca
+aaaabacaaaa
+Invalid strings will be rejected.
+
+Customization
+To modify the NFA:
+
+Adjust the transitions dictionary to change state transitions or add additional states.
+Update the start or accept states as needed.
+Examples of Accepted and Rejected Strings
+Accepted Strings:
+aaaabca
+aaaaaaabacaaa
+aabacaaa
+aaaaabacaaaa
+Rejected Strings:
+abc
+aabc
+abab
 
 # PDA
 Pushdown Automaton (PDA) Simulator
